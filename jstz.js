@@ -106,11 +106,12 @@
            * environments that support the ECMAScript Internationalization API.
            */
           get_from_intl = function() {
-            if (typeof Intl === "undefined") return;
-            if (typeof Intl.DateTimeFormat === "undefined") return;
+            if (typeof Intl === "undefined" || typeof Intl.DateTimeFormat === "undefined")
+                return;
             var format = Intl.DateTimeFormat();
-            if (typeof format === "object" && typeof format.resolved === "object")
-                return format.resolved.timeZone;
+            if (typeof format === "undefined" || typeof format.resolved === "undefined")
+                return;
+            return format.resolved.timeZone;
           },
 
           /**
