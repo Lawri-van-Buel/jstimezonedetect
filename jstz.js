@@ -109,9 +109,9 @@
             if (typeof Intl === "undefined" || typeof Intl.DateTimeFormat === "undefined")
                 return;
             var format = Intl.DateTimeFormat();
-            if (typeof format === "undefined" || typeof format.resolved === "undefined")
+            if (typeof format === "undefined" || typeof format.resolvedOptions === "undefined")
                 return;
-            return format.resolved.timeZone;
+            return format.resolvedOptions().timeZone;
           },
 
           /**
