@@ -294,7 +294,7 @@
    * only interesting for timezones with DST.
    *
    * The mapped arrays is used for constructing the jstz.TimeZone object from within
-   * jstz.determine_timezone();
+   * jstz.determine();
    */
   jstz.olson.timezones = {
       '-720,0'   : 'Pacific/Majuro',
