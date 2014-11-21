@@ -312,7 +312,6 @@
                 var has_dst = check_has_dst(rules);
 
                 if (has_dst) {
-                    console.log(rules);
                     return best_dst_match(rules, preliminary_timezone);
                 }
 
