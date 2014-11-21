@@ -1,4 +1,4 @@
-/*global console, exports, Intl*/
+/*global exports, Intl*/
 /**
  * This script gives you the zone info key representing your device's time zone setting.
  *
@@ -229,6 +229,7 @@
                     var score = 0;
 
                     for (var j = 0; j < rule_list.length; j++) {
+
                         // Both sample and current time zone report DST during the year.
                         if (!!sample.rules[j] && !!rule_list[j]) {
 
@@ -251,6 +252,27 @@
                             }
                         }
                     }
+
+                    if (preliminary_timezone === 'Asia/Beirut' && score === 'N/A') {
+                        var potential_match_because_windows_cry = false;
+                        var rule_index = 0;
+                        if (sample.name == 'Africa/Cairo') {
+                            potential_match_because_windows_cry = true;
+                            rule_index = 6;
+                        }
+
+                        if (potential_match_because_windows_cry) {
+                            if (!!sample.rules[rule_index] && !!rule_list[rule_index]) {
+                                if (rule_list[rule_index].start >= sample.rules[rule_index].start && rule_list[rule_index].end <= sample.rules[rule_index].end) {
+                                    score = 0;
+                                    score += Math.abs(rule_list[rule_index].start - sample.rules[rule_index].start);
+                                    score += Math.abs(sample.rules[rule_index].end - rule_list[rule_index].end);
+                                }
+                            }
+                        }
+
+                    }
+
                     return score;
                 };
                 var scoreboard = {};
@@ -1759,6 +1781,7 @@
             }
         ]
     };
+
     if (typeof exports !== 'undefined') {
         exports.jstz = jstz;
     } else {

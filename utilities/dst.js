@@ -93,7 +93,9 @@ function _find_dst_fold(a_date, padding, iterator) {
     return dst_change;
 }
 
-process.env.TZ = process.argv[2];
+if (process.argv[2] !== 'current') {
+    process.env.TZ = process.argv[2];
+}
 
 var years = (function () {
     var year_list = [];
