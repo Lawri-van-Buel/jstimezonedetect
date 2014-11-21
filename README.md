@@ -46,6 +46,7 @@ Thanks to
   - [Brian Donovan][6] for making jstz CommonJS compliant
   - [Ilya Sedlovsky][7] for help with namespacing
   - [Jordan Magnuson][9] for adding to cdnjs, documentation tags, and for reporting important issues
+  - [Matt Johnson][11] for adding support for the Internationalization API
 
 Other contributors:
 [Gilmore Davidson][8]
@@ -60,3 +61,4 @@ Other contributors:
 [8]: https://bitbucket.org/gdavidson
 [9]: https://github.com/JordanMagnuson
 [10]: http://cdnjs.com
+[11]: https://bitbucket.org/mj1856

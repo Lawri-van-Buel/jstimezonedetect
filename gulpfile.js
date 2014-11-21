@@ -35,8 +35,8 @@ gulp.task('build', [], function () {
         .pipe(gulp.dest('.'))
 });
 
-gulp.task('watch', function() {
-  gulp.watch(paths.scripts, ['build']);
+gulp.task('watch', function () {
+    gulp.watch(paths.scripts, ['build']);
 });
 
 gulp.task('default', ['watch', 'build']);
