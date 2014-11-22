@@ -25,12 +25,13 @@ var buildTime = (function () {
 }());
 
 var paths = {
-    scripts: ['jstz.js']
+    scripts: ['jstz.js','rules.js']
 };
 
 gulp.task('build', [], function () {
     return gulp.src(paths.scripts)
-	.pipe(jshint())
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'))
         .pipe(uglify())
         .pipe(concat('jstz.min.js'))
         .pipe(header('/*! jsTimezoneDetect - v' + package.version + ' - ' + buildTime + ' */\n'))

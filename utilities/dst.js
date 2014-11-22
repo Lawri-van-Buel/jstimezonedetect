@@ -12,7 +12,7 @@
  * for each year provided, in order.
  *
  * This script should basically only be called from dst.py while generating
- * the rules.json file.
+ * the rules.js file.
  */
 var fs = require('fs');
 
@@ -50,8 +50,8 @@ function dst_dates(year) {
 
     if (dst_start && dst_end) {
         return {
-            start: _find_dst_fold(dst_start).getTime(),
-            end: _find_dst_fold(dst_end).getTime()
+            s: _find_dst_fold(dst_start).getTime(),
+            e: _find_dst_fold(dst_end).getTime()
         }
     }
 

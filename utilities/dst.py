@@ -5,24 +5,23 @@ Module for generating rules and for testing.
 import subprocess
 import json
 import sys
+from datetime import datetime
 
-AMBIGUOUS_DST_ZONES = ['America/Denver', 'America/Mazatlan', 'America/Chicago', 'America/Mexico_City',
-                       'America/Santiago', 'America/Asuncion', 'America/Campo_Grande', 'America/Montevideo',
-                       'America/Sao_Paulo', 'Asia/Amman', 'Asia/Jerusalem', 'Asia/Beirut',
-                       'Europe/Helsinki', 'Asia/Damascus', 'Africa/Cairo', 'Asia/Gaza', 'Pacific/Auckland',
-                       'Pacific/Fiji', 'America/Los_Angeles', 'America/Santa_Isabel', 'America/New_York',
-                       'America/Havana', 'America/Halifax', 'America/Goose_Bay', 'America/Godthab',
-                       'America/Miquelon', 'Asia/Dubai', 'Asia/Yerevan', 'Asia/Jakarta', 'Asia/Krasnoyarsk',
-                       'Asia/Shanghai', 'Asia/Irkutsk', 'Australia/Perth', 'Australia/Sydney',
-                       'Australia/Lord_Howe', 'Asia/Tokyo', 'Asia/Yakutsk', 'Asia/Dhaka',
-                       'Asia/Omsk', 'Australia/Brisbane', 'Asia/Vladivostok', 'Pacific/Noumea',
-                       'Pacific/Majuro', 'Asia/Kamchatka', 'Pacific/Tongatapu',
-                       'Pacific/Apia', 'Asia/Baghdad', 'Europe/Minsk', 'Europe/Moscow',
-                       'Asia/Karachi', 'Asia/Yekaterinburg', 'Africa/Johannesburg']
+AMBIGUOUS_DST_ZONES = ['Africa/Cairo', 'America/Asuncion', 'America/Campo_Grande', 'America/Goose_Bay',
+                       'America/Havana', 'America/Mazatlan', 'America/Mexico_City', 'America/Miquelon',
+                       'America/Santa_Isabel', 'America/Sao_Paulo', 'Asia/Amman', 'Asia/Damascus',
+                       'Asia/Dubai', 'Asia/Gaza', 'Asia/Irkutsk', 'Asia/Jerusalem', 'Asia/Kamchatka',
+                       'Asia/Krasnoyarsk', 'Asia/Omsk', 'Asia/Vladivostok', 'Asia/Yakutsk', 'Asia/Yekaterinburg',
+                       'Asia/Yerevan', 'Australia/Lord_Howe', 'Australia/Perth', 'Europe/Helsinki',
+                       'Europe/Minsk', 'Europe/Moscow', 'Pacific/Apia', 'Pacific/Fiji']
 
-OTHER_DST_ZONES = ['Europe/Berlin', 'Australia/Adelaide', 'Africa/Windhoek', 'Asia/Tehran',
-                   'Asia/Baku', 'America/St_Johns', 'Atlantic/Azores', 'America/Adak',
-                   'Europe/London', 'Pacific/Chatham', 'America/Anchorage', 'America/Noronha']
+OTHER_DST_ZONES = ['Africa/Johannesburg', 'Africa/Windhoek', 'America/Adak', 'America/Anchorage', 'America/Chicago',
+                   'America/Denver', 'America/Godthab', 'America/Halifax', 'America/Los_Angeles', 'America/Montevideo',
+                   'America/New_York', 'America/Noronha', 'America/Santiago', 'America/St_Johns', 'Asia/Baghdad',
+                   'Asia/Baku', 'Asia/Beirut', 'Asia/Dhaka', 'Asia/Jakarta', 'Asia/Karachi', 'Asia/Shanghai',
+                   'Asia/Tehran', 'Asia/Tokyo', 'Atlantic/Azores', 'Australia/Adelaide', 'Australia/Brisbane',
+                   'Australia/Sydney', 'Europe/Berlin', 'Europe/London', 'Pacific/Auckland', 'Pacific/Chatham',
+                   'Pacific/Majuro', 'Pacific/Noumea', 'Pacific/Tongatapu']
 
 OTHER_TIMEZONES = ['America/Guatemala', 'Pacific/Pitcairn', 'Asia/Kolkata', 'Pacific/Kiritimati',
                    'Australia/Darwin', 'Pacific/Pago_Pago', 'Pacific/Honolulu', 'America/Bogota',
@@ -31,8 +30,7 @@ OTHER_TIMEZONES = ['America/Guatemala', 'Pacific/Pitcairn', 'Asia/Kolkata', 'Pac
                    'Pacific/Norfolk', 'Asia/Kabul', 'Africa/Lagos', 'Pacific/Gambier', 'Asia/Rangoon',
                    'Etc/GMT+12', 'Australia/Eucla', 'America/Caracas']
 
-
-YEARS = [2008, 2009, 2010, 2011, 2012, 2013, 2014]
+YEARS = range(2008, 2015)
 
 
 def generate_rules():
@@ -51,11 +49,19 @@ def generate_rules():
 
     rules['zones'] = zones
 
-    with open('rules.json', 'w') as rulefile:
-        rulefile.write(json.dumps(rules, sort_keys=True, indent=4, separators=(',', ': ')))
+    rules_json = json.dumps(rules, sort_keys=True, indent=4, separators=(',', ': '))
 
-    print "Written to rules.json"
-    exit(1)
+    rules_js = """/* Build time: %s */
+(function () {
+var jstz = exports.jstz || root.jstz;
+jstz.olson = jstz.olson || jstz.olson;
+jstz.olson.dst_rules = %s;
+}());""" % (datetime.utcnow().strftime('%Y-%m-%d %H:%M:%SZ'), rules_json)
+
+    with open('../rules.js', 'w') as rulefile:
+        rulefile.write(rules_js)
+
+    print "Written to ../rules.js"
 
 
 def test(include_success=False):
@@ -76,7 +82,7 @@ def test(include_success=False):
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print "Supply arguments 'generate' or 'test'"
-        exit(0)
+        exit()
 
     if sys.argv[1] == 'generate':
         generate_rules()

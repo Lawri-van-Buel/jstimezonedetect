@@ -11,7 +11,7 @@
  *
  * @type {exports.jstz|*}
  */
-var jstz = require("../jstz").jstz;
+var jstz = require("../jstz.min").jstz;
 
 var expected_tz = process.argv[2];
 var actual_tz = null;
