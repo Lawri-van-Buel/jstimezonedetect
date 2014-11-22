@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var uglify = require('gulp-uglify');
+var jshint = require('gulp-jshint');
 var concat = require('gulp-concat');
 var header = require('gulp-header');
 var package = require('./package.json')
@@ -29,6 +30,7 @@ var paths = {
 
 gulp.task('build', [], function () {
     return gulp.src(paths.scripts)
+	.pipe(jshint())
         .pipe(uglify())
         .pipe(concat('jstz.min.js'))
         .pipe(header('/*! jsTimezoneDetect - v' + package.version + ' - ' + buildTime + ' */\n'))
