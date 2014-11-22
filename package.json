@@ -16,12 +16,12 @@
       "web": "http://blog.pageloom.com"
     }
   ],
-  "repositories": [
+  "repository":
     {
       "type": "hg",
       "url": "https://bitbucket.org/pellepim/jstimezonedetect"
     }
-  ],
+  ,
   "licenses": [
     {
       "type": "MIT",
