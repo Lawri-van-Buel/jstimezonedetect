@@ -34,9 +34,8 @@
                     'America/Chicago':      ['America/Mexico_City'],
                     'America/Santiago':     ['America/Asuncion', 'America/Campo_Grande'],
                     'America/Montevideo':   ['America/Sao_Paulo'],
-
-	            // Europe/Minsk should not be in this list... but Windows.
-	            'Asia/Beirut':          ['Asia/Amman', 'Asia/Jerusalem', 'Europe/Helsinki', 'Asia/Damascus', 'Africa/Cairo', 'Asia/Gaza', 'Europe/Minsk'],
+                    // Europe/Minsk should not be in this list... but Windows.
+                    'Asia/Beirut':          ['Asia/Amman', 'Asia/Jerusalem', 'Europe/Helsinki', 'Asia/Damascus', 'Africa/Cairo', 'Asia/Gaza', 'Europe/Minsk'],
                     'Pacific/Auckland':     ['Pacific/Fiji'],
                     'America/Los_Angeles':  ['America/Santa_Isabel'],
                     'America/New_York':     ['America/Havana'],
@@ -48,9 +47,8 @@
                     'Australia/Sydney':     ['Australia/Lord_Howe'],
                     'Asia/Tokyo':           ['Asia/Yakutsk'],
                     'Asia/Dhaka':           ['Asia/Omsk'],
-		    
-		    // In the real world Yerevan is not ambigous for Baku... but Windows.
-		    'Asia/Baku':            ['Asia/Yerevan'],
+                    // In the real world Yerevan is not ambigous for Baku... but Windows.
+                    'Asia/Baku':            ['Asia/Yerevan'],
                     'Australia/Brisbane':   ['Asia/Vladivostok'],
                     'Pacific/Noumea':       ['Asia/Vladivostok'],
                     'Pacific/Majuro':       ['Asia/Kamchatka', 'Pacific/Fiji'],
@@ -206,46 +204,46 @@
 
             windows7_adaptations = function windows7_adaptions(rule_list, preliminary_timezone, score, sample) {
                 if (score !== 'N/A') {
-		    return score;
-		}
-		if (preliminary_timezone === 'Asia/Beirut') {
+                    return score;
+                }
+                if (preliminary_timezone === 'Asia/Beirut') {
                     if (sample.name === 'Africa/Cairo') {
-		        if (rule_list[6].start === 1398376800000 && rule_list[6].end === 1411678800000) {
-	                    return 0;
-			}
+                        if (rule_list[6].start === 1398376800000 && rule_list[6].end === 1411678800000) {
+                            return 0;
+                        }
                     }
-		    if (sample.name === 'Asia/Jerusalem') {
-		        if (rule_list[6].start === 1395964800000 && rule_list[6].end === 1411858800000) {
-	                    return 0;
-			}
-	            }
+                    if (sample.name === 'Asia/Jerusalem') {
+                        if (rule_list[6].start === 1395964800000 && rule_list[6].end === 1411858800000) {
+                            return 0;
+                    }
+                }
                 } else if (preliminary_timezone === 'America/Santiago') {
-		    if (sample.name === 'America/Asuncion') {
-			if (rule_list[6].start === 1412481600000 && rule_list[6].end === 1397358000000) {
-			    return 0;
-		        }
-		    }
-	            if (sample.name === 'America/Campo_Grande') {
-		        if (rule_list[6].start === 1413691200000 && rule_list[6].end === 1392519600000) {
-			    return 0;
-		        }
-		    }
-		} else if (preliminary_timezone === 'America/Montevideo') {
-		    if (sample.name === 'America/Sao_Paulo') {
-			if (rule_list[6].start === 1413687600000 && rule_list[6].end === 1392516000000) {
-			    return 0;
-			}
-		    }
-		} else if (preliminary_timezone === 'Pacific/Auckland') {
+                    if (sample.name === 'America/Asuncion') {
+                        if (rule_list[6].start === 1412481600000 && rule_list[6].end === 1397358000000) {
+                            return 0;
+                        }
+                    }
+                    if (sample.name === 'America/Campo_Grande') {
+                        if (rule_list[6].start === 1413691200000 && rule_list[6].end === 1392519600000) {
+                            return 0;
+                        }
+                    }
+                } else if (preliminary_timezone === 'America/Montevideo') {
+                    if (sample.name === 'America/Sao_Paulo') {
+                        if (rule_list[6].start === 1413687600000 && rule_list[6].end === 1392516000000) {
+                            return 0;
+                        }
+                    }
+                } else if (preliminary_timezone === 'Pacific/Auckland') {
                     if (sample.name === 'Pacific/Fiji') {
                         if (rule_list[6].start === 1414245600000 && rule_list[6].end === 1396101600000) {
-			    return 0;
-			}
-		    }
-		}
+                            return 0;
+                        }
+                    }
+                }
 
-		return score;
-	    },
+                return score;
+            },
 
             /**
              * Takes the DST rules for the current timezone, and proceeds to find matches
@@ -302,7 +300,7 @@
                     
                     score = windows7_adaptations(rule_list, preliminary_timezone, score, sample);
 
-		    return score;
+                    return score;
                 };
                 var scoreboard = {};
                 var dst_zones = jstz.olson.dst_rules.zones;
@@ -395,8 +393,7 @@
             };
 
         return {
-            determine: determine,
-	    lookup_key: lookup_key
+            determine: determine
         };
     }());
 
@@ -420,7 +417,7 @@
     jstz.olson.timezones = {
         '-720,0': 'Etc/GMT+12',
         '-660,0': 'Pacific/Pago_Pago',
-	'-660,1,s': 'Pacific/Apia', // Why? Because windows... cry! 
+        '-660,1,s': 'Pacific/Apia', // Why? Because windows... cry!
         '-600,1': 'America/Adak',
         '-600,0': 'Pacific/Honolulu',
         '-570,0': 'Pacific/Marquesas',
