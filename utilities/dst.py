@@ -6,6 +6,7 @@ import subprocess
 import json
 import sys
 from datetime import datetime
+import os
 
 AMBIGUOUS_DST_ZONES = ['Africa/Cairo', 'America/Asuncion', 'America/Campo_Grande', 'America/Goose_Bay',
                        'America/Havana', 'America/Mazatlan', 'America/Mexico_City', 'America/Miquelon',
@@ -123,8 +124,8 @@ def generate_rules():
 
     rules_json = json.dumps(rules, sort_keys=True, indent=4, separators=(',', ': '))
 
-    rules_js = """/* Build time: %s */
-    jstz.olson.dst_rules = %s;""" % (datetime.utcnow().strftime('%Y-%m-%d %H:%M:%SZ'), rules_json)
+    rules_js = """/* Build time: %s Build by invoking python utilities/dst.py generate */
+jstz.olson.dst_rules = %s;""" % (datetime.utcnow().strftime('%Y-%m-%d %H:%M:%SZ'), rules_json)
 
     with open('../jstz.rules.js', 'w') as rulefile:
         rulefile.write(rules_js)
@@ -161,6 +162,8 @@ def test(include_success=False):
         print "%s/%s tests failed" % (failures, successes + failures)
 
 if __name__ == "__main__":
+    os.chdir(os.path.dirname(os.path.realpath(__file__)))
+
     if len(sys.argv) < 2:
         print "Supply arguments 'generate' or 'test'"
         exit()
