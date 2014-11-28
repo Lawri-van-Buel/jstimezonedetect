@@ -111,6 +111,7 @@ def generate_rules():
     zones = []
     
     for timezone in AMBIGUOUS_DST_ZONES:
+        print "Generating rules for %s" % timezone
         call_args = ['node', 'dst.js', timezone] + [str(y) for y in YEARS]
         result = {
             'name': timezone,
@@ -123,16 +124,12 @@ def generate_rules():
     rules_json = json.dumps(rules, sort_keys=True, indent=4, separators=(',', ': '))
 
     rules_js = """/* Build time: %s */
-(function () {
-var jstz = exports.jstz || root.jstz;
-jstz.olson = jstz.olson || jstz.olson;
-jstz.olson.dst_rules = %s;
-}());""" % (datetime.utcnow().strftime('%Y-%m-%d %H:%M:%SZ'), rules_json)
+    jstz.olson.dst_rules = %s;""" % (datetime.utcnow().strftime('%Y-%m-%d %H:%M:%SZ'), rules_json)
 
-    with open('../rules.js', 'w') as rulefile:
+    with open('../jstz.rules.js', 'w') as rulefile:
         rulefile.write(rules_js)
 
-    print "Written to ../rules.js"
+    print "Written to ../jstz.rules.js"
 
 
 def test(include_success=False):

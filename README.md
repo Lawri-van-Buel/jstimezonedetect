@@ -36,7 +36,7 @@ There is an updated demo running on: [http://pellepim.bitbucket.org/jstz/][2].
 
 ## Contribute?
 
-If you want to contribute to the project (perhaps fix a bug, or reflect a change in time zone rules), please simply issue a Pull Request. Don't worry about [Grunt][4] builds etc, all you need to modify is the jstz.js file and I'll take care of the testing/minifying etc.
+If you want to contribute to the project (perhaps fix a bug, or reflect a change in time zone rules), please simply issue a Pull Request. Don't worry about [Grunt][4] builds etc, all you need to modify is the main.js file and I'll take care of the testing/minifying etc.
 
 ## Credits
 
