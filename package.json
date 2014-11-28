@@ -16,12 +16,10 @@
       "web": "http://blog.pageloom.com"
     }
   ],
-  "repository":
-    {
-      "type": "hg",
-      "url": "https://bitbucket.org/pellepim/jstimezonedetect"
-    }
-  ,
+  "repository": {
+    "type": "hg",
+    "url": "https://bitbucket.org/pellepim/jstimezonedetect"
+  },
   "licenses": [
     {
       "type": "MIT",
@@ -29,10 +27,14 @@
     }
   ],
   "devDependencies": {
+    "del": "^0.1.3",
     "gulp": "^3.8.10",
     "gulp-concat": "^2.4.2",
+    "gulp-footer": "^1.0.5",
     "gulp-header": "^1.2.2",
     "gulp-jshint": "^1.9.0",
-    "gulp-uglify": "^1.0.1"
+    "gulp-rename": "^1.2.0",
+    "gulp-uglify": "^1.0.1",
+    "gulp-wrap-commonjs": "^0.1.12"
   }
 }
