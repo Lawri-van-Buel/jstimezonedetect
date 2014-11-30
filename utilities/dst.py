@@ -34,7 +34,7 @@ OTHER_TIMEZONES = ['America/Guatemala', 'Pacific/Pitcairn', 'Asia/Kolkata', 'Pac
 OLSON_TO_WIN32_MAPPING = {
     'Etc/GMT+12': 'Dateline Standard Time',
     'Pacific/Pago_Pago': 'UTC-11',
-    'Pacific Honolulu': 'Hawaiian Standard Time',
+    'Pacific/Honolulu': 'Hawaiian Standard Time',
     'America/Anchorage': 'Alaskan Standard Time',
     'America/Santa_Isabel': 'Pacific Standard Time (Mexico)',
     'America/Los_Angeles': 'Pacific Standard Time',
