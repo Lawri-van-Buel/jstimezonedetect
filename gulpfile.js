@@ -12,11 +12,12 @@ var pkg = require('./package.json');
 
 var buildTime = function () {
     var now = new Date();
+
     var getMonth = function () {
-        if (now.getMonth() < 10) {
-            return "0" + now.getMonth();
+        if (now.getMonth() + 1 < 10) {
+            return "0" + (now.getMonth() + 1);
         }
-        return now.getMonth();
+        return now.getMonth() + 1;
     };
     var getDate = function () {
         if (now.getDate() < 10) {

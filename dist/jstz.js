@@ -99,14 +99,23 @@ var jstz = (function () {
          * environments that support the ECMAScript Internationalization API.
          */
         get_from_internationalization_api = function get_from_internationalization_api() {
+            var format, timezone;
             if (typeof Intl === "undefined" || typeof Intl.DateTimeFormat === "undefined") {
                 return;
             }
-            var format = Intl.DateTimeFormat();
+
+            format = Intl.DateTimeFormat();
+
             if (typeof format === "undefined" || typeof format.resolvedOptions === "undefined") {
                 return;
             }
-            return format.resolvedOptions().timeZone;
+
+            timezone = format.resolvedOptions().timeZone;
+
+            if (timezone && (timezone.indexOf("/") > -1 || timezone === 'UTC')) {
+                return timezone;
+            }
+
         },
 
         /**
@@ -317,8 +326,10 @@ var jstz = (function () {
 
             for (var tz in scoreboard) {
                 if (scoreboard.hasOwnProperty(tz)) {
-                    if (ambiguities.indexOf(tz) != -1) {
-                        return tz;
+                    for (var j = 0; j < ambiguities.length; j++) {
+                        if (ambiguities[j] === tz) {
+                            return tz;
+                        }
                     }
                 }
             }
@@ -488,7 +499,7 @@ jstz.olson.timezones = {
     '840,0': 'Pacific/Kiritimati'
 };
 
-/* Build time: 2014-11-28 11:10:50Z Build by invoking python utilities/dst.py generate */
+/* Build time: 2015-09-16 13:17:53Z Build by invoking python utilities/dst.py generate */
 jstz.olson.dst_rules = {
     "years": [
         2008,
@@ -921,7 +932,7 @@ jstz.olson.dst_rules = {
                     "s": 1364508000000
                 },
                 {
-                    "e": 1411678800000,
+                    "e": 1414098000000,
                     "s": 1395957600000
                 }
             ]
@@ -1305,7 +1316,8 @@ jstz.olson.dst_rules = {
             ]
         }
     ]
-};    if (typeof exports !== 'undefined') {
+};
+    if (typeof exports !== 'undefined') {
         exports.jstz = jstz;
     } else {
         root.jstz = jstz;
