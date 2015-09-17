@@ -30,6 +30,7 @@ var jstz = (function () {
             MAX_SCORE: 864000000, // 10 days
             AMBIGUITIES: {
                 'America/Denver':       ['America/Mazatlan'],
+                'Europe/London':        ['Africa/Casablanca'],
                 'America/Chicago':      ['America/Mexico_City'],
                 'America/Santiago':     ['America/Asuncion', 'America/Campo_Grande'],
                 'America/Montevideo':   ['America/Sao_Paulo'],
@@ -499,7 +500,7 @@ jstz.olson.timezones = {
     '840,0': 'Pacific/Kiritimati'
 };
 
-/* Build time: 2015-09-16 13:17:53Z Build by invoking python utilities/dst.py generate */
+/* Build time: 2015-09-17 08:15:19Z Build by invoking python utilities/dst.py generate */
 jstz.olson.dst_rules = {
     "years": [
         2008,
@@ -532,6 +533,39 @@ jstz.olson.dst_rules = {
                 {
                     "e": 1411678800000,
                     "s": 1406844000000
+                }
+            ]
+        },
+        {
+            "name": "Africa/Casablanca",
+            "rules": [
+                {
+                    "e": 1220223600000,
+                    "s": 1212278400000
+                },
+                {
+                    "e": 1250809200000,
+                    "s": 1243814400000
+                },
+                {
+                    "e": 1281222000000,
+                    "s": 1272758400000
+                },
+                {
+                    "e": 1312066800000,
+                    "s": 1301788800000
+                },
+                {
+                    "e": 1348970400000,
+                    "s": 1345428000000
+                },
+                {
+                    "e": 1382839200000,
+                    "s": 1376100000000
+                },
+                {
+                    "e": 1414288800000,
+                    "s": 1406944800000
                 }
             ]
         },
@@ -1312,6 +1346,39 @@ jstz.olson.dst_rules = {
                 {
                     "e": 1421503200000,
                     "s": 1414850400000
+                }
+            ]
+        },
+        {
+            "name": "Europe/London",
+            "rules": [
+                {
+                    "e": 1224982800000,
+                    "s": 1206838800000
+                },
+                {
+                    "e": 1256432400000,
+                    "s": 1238288400000
+                },
+                {
+                    "e": 1288486800000,
+                    "s": 1269738000000
+                },
+                {
+                    "e": 1319936400000,
+                    "s": 1301187600000
+                },
+                {
+                    "e": 1351386000000,
+                    "s": 1332637200000
+                },
+                {
+                    "e": 1382835600000,
+                    "s": 1364691600000
+                },
+                {
+                    "e": 1414285200000,
+                    "s": 1396141200000
                 }
             ]
         }
