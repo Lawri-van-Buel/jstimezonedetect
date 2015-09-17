@@ -99,14 +99,22 @@ var jstz = (function () {
          * environments that support the ECMAScript Internationalization API.
          */
         get_from_internationalization_api = function get_from_internationalization_api() {
+            var format, timezone;
             if (typeof Intl === "undefined" || typeof Intl.DateTimeFormat === "undefined") {
                 return;
             }
-            var format = Intl.DateTimeFormat();
+
+            format = Intl.DateTimeFormat();
+
             if (typeof format === "undefined" || typeof format.resolvedOptions === "undefined") {
                 return;
             }
-            return format.resolvedOptions().timeZone;
+
+            timezone = format.resolvedOptions().timeZone;
+
+            if (timezone.indexOf("/") > -1 || timezone === 'UTC') {
+                return timezone;
+            }
         },
 
         /**

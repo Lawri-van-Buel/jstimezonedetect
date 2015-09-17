@@ -99,14 +99,22 @@ var jstz = (function () {
          * environments that support the ECMAScript Internationalization API.
          */
         get_from_internationalization_api = function get_from_internationalization_api() {
+            var format, timezone;
             if (typeof Intl === "undefined" || typeof Intl.DateTimeFormat === "undefined") {
                 return;
             }
-            var format = Intl.DateTimeFormat();
+
+            format = Intl.DateTimeFormat();
+
             if (typeof format === "undefined" || typeof format.resolvedOptions === "undefined") {
                 return;
             }
-            return format.resolvedOptions().timeZone;
+
+            timezone = format.resolvedOptions().timeZone;
+
+            if (timezone.indexOf("/") > -1 || timezone === 'UTC') {
+                return timezone;
+            }
         },
 
         /**
@@ -488,7 +496,7 @@ jstz.olson.timezones = {
     '840,0': 'Pacific/Kiritimati'
 };
 
-/* Build time: 2015-09-16 12:10:08Z Build by invoking python utilities/dst.py generate */
+/* Build time: 2015-09-16 13:17:53Z Build by invoking python utilities/dst.py generate */
 jstz.olson.dst_rules = {
     "years": [
         2008,
