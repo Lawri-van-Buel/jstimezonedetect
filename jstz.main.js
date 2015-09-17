@@ -112,9 +112,10 @@ var jstz = (function () {
 
             timezone = format.resolvedOptions().timeZone;
 
-            if (timezone.indexOf("/") > -1 || timezone === 'UTC') {
+            if (timezone && (timezone.indexOf("/") > -1 || timezone === 'UTC')) {
                 return timezone;
             }
+
         },
 
         /**
@@ -325,8 +326,10 @@ var jstz = (function () {
 
             for (var tz in scoreboard) {
                 if (scoreboard.hasOwnProperty(tz)) {
-                    if (ambiguities.indexOf(tz) != -1) {
-                        return tz;
+                    for (var j = 0; j < ambiguities.length; j++) {
+                        if (ambiguities[j] === tz) {
+                            return tz;
+                        }
                     }
                 }
             }
