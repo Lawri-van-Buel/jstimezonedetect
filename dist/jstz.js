@@ -32,8 +32,8 @@ var jstz = (function () {
                 'America/Denver':       ['America/Mazatlan'],
                 'Europe/London':        ['Africa/Casablanca'],
                 'America/Chicago':      ['America/Mexico_City'],
-                'America/Santiago':     ['America/Asuncion', 'America/Campo_Grande'],
-                'America/Montevideo':   ['America/Sao_Paulo'],
+                'America/Asuncion':     ['America/Campo_Grande', 'America/Santiago'],
+                'America/Montevideo':   ['America/Sao_Paulo', 'America/Santiago'],
                 // Europe/Minsk should not be in this list... but Windows.
                 'Asia/Beirut':          ['Asia/Amman', 'Asia/Jerusalem', 'Europe/Helsinki', 'Asia/Damascus', 'Africa/Cairo', 'Asia/Gaza', 'Europe/Minsk'],
                 'Pacific/Auckland':     ['Pacific/Fiji'],
@@ -446,7 +446,7 @@ jstz.olson.timezones = {
     '-270,0': 'America/Caracas',
     '-240,1': 'America/Halifax',
     '-240,0': 'America/Santo_Domingo',
-    '-240,1,s': 'America/Santiago',
+    '-240,1,s': 'America/Asuncion',
     '-210,1': 'America/St_Johns',
     '-180,1': 'America/Godthab',
     '-180,0': 'America/Argentina/Buenos_Aires',
@@ -500,7 +500,7 @@ jstz.olson.timezones = {
     '840,0': 'Pacific/Kiritimati'
 };
 
-/* Build time: 2015-09-17 08:15:19Z Build by invoking python utilities/dst.py generate */
+/* Build time: 2015-09-17 08:50:28Z Build by invoking python utilities/dst.py generate */
 jstz.olson.dst_rules = {
     "years": [
         2008,
@@ -830,6 +830,39 @@ jstz.olson.dst_rules = {
                 {
                     "e": 1414314000000,
                     "s": 1396778400000
+                }
+            ]
+        },
+        {
+            "name": "America/Santiago",
+            "rules": [
+                {
+                    "e": 1206846000000,
+                    "s": 1223784000000
+                },
+                {
+                    "e": 1237086000000,
+                    "s": 1255233600000
+                },
+                {
+                    "e": 1270350000000,
+                    "s": 1286683200000
+                },
+                {
+                    "e": 1304823600000,
+                    "s": 1313899200000
+                },
+                {
+                    "e": 1335668400000,
+                    "s": 1346558400000
+                },
+                {
+                    "e": 1367118000000,
+                    "s": 1378612800000
+                },
+                {
+                    "e": 1398567600000,
+                    "s": 1410062400000
                 }
             ]
         },
@@ -1385,7 +1418,7 @@ jstz.olson.dst_rules = {
     ]
 };
     if (typeof exports !== 'undefined') {
-        exports.jstz = jstz;
+        module.exports.jstz = jstz;
     } else {
         root.jstz = jstz;
     }
