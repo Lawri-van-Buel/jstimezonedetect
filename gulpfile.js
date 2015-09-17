@@ -51,7 +51,7 @@ gulp.task('common-js', ['concat'], function () {
         .pipe(header('(function (root) {'))
         .pipe(footer("\n" +
         "    if (typeof exports !== 'undefined') {\n" +
-        "        exports.jstz = jstz;\n" +
+        "        module.exports.jstz = jstz;\n" +
         "    } else {\n" +
         "        root.jstz = jstz;\n" +
         "    }\n" +

@@ -30,6 +30,7 @@ var jstz = (function () {
             MAX_SCORE: 864000000, // 10 days
             AMBIGUITIES: {
                 'America/Denver':       ['America/Mazatlan'],
+                'Europe/London':        ['Africa/Casablanca'],
                 'America/Chicago':      ['America/Mexico_City'],
                 'America/Santiago':     ['America/Asuncion', 'America/Campo_Grande'],
                 'America/Montevideo':   ['America/Sao_Paulo'],
