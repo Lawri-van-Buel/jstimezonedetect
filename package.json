@@ -1,5 +1,5 @@
 {
-  "name": "jsTimezoneDetect",
+  "name": "jstimezonedetect",
   "main": "./dist/jstz.js",
   "filename": "jstz.min.js",
   "version": "1.0.5",
@@ -11,12 +11,7 @@
     "tz",
     "date"
   ],
-  "maintainers": [
-    {
-      "name": "Jon Nylander",
-      "web": "http://blog.pageloom.com"
-    }
-  ],
+  "author": "Jon Nylander <pellepim@gmail.com>",
   "repository": {
     "type": "hg",
     "url": "https://bitbucket.org/pellepim/jstimezonedetect"
