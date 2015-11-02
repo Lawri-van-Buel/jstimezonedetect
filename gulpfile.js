@@ -49,13 +49,15 @@ gulp.task('concat', ['jshint'], function () {
 gulp.task('common-js', ['concat'], function () {
     return gulp.src(['dist/jstz.concat.js'])
         .pipe(header('(function (root) {'))
-        .pipe(footer("\n" +
-        "    if (typeof exports !== 'undefined') {\n" +
-        "        module.exports.jstz = jstz;\n" +
-        "    } else {\n" +
-        "        root.jstz = jstz;\n" +
-        "    }\n" +
-        "})(this);\n"))
+        .pipe(footer("if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {\n" +
+                     "    module.exports = jstz;\n" +
+                     "} else if ((typeof define !== 'undefined' && define !== null) && (define.amd != null)) {\n" +
+                     "    define([], function() {\n" +
+                     "        return jstz;\n" +
+                     "    });\n" +
+                     "} else {\n" +
+                     "    root.jstz = jstz;\n" +
+                     "}\n}())\n"))
         .pipe(rename('jstz.js'))
         .pipe(gulp.dest('dist'))
 });

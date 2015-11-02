@@ -500,7 +500,7 @@ jstz.olson.timezones = {
     '840,0': 'Pacific/Kiritimati'
 };
 
-/* Build time: 2015-09-17 08:50:28Z Build by invoking python utilities/dst.py generate */
+/* Build time: 2015-11-02 13:01:00Z Build by invoking python utilities/dst.py generate */
 jstz.olson.dst_rules = {
     "years": [
         2008,
@@ -1416,10 +1416,13 @@ jstz.olson.dst_rules = {
             ]
         }
     ]
-};
-    if (typeof exports !== 'undefined') {
-        module.exports.jstz = jstz;
-    } else {
-        root.jstz = jstz;
-    }
-})(this);
+};if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+    module.exports = jstz;
+} else if ((typeof define !== 'undefined' && define !== null) && (define.amd != null)) {
+    define([], function() {
+        return jstz;
+    });
+} else {
+    root.jstz = jstz;
+}
+}())
