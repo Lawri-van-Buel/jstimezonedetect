@@ -101,11 +101,10 @@ OLSON_TO_WIN32_MAPPING = {
 YEARS = range(2008, 2015)
 
 
-
-
 def set_windows_timezone(timezone):
     windows_tz = OLSON_TO_WIN32_MAPPING[timezone]
     subprocess.call(['tzutil', '/s', windows_tz])
+
 
 def generate_rules():
     rules = {'years': YEARS}
