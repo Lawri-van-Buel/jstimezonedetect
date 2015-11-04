@@ -3,7 +3,7 @@
  * This script gives you the zone info key representing your device's time zone setting.
  *
  * @name jsTimezoneDetect
- * @version 1.0.5
+ * @version 1.0.6
  * @author Jon Nylander
  * @license MIT License - https://bitbucket.org/pellepim/jstimezonedetect/src/default/LICENCE.txt
  *
