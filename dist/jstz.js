@@ -1416,13 +1416,18 @@ jstz.olson.dst_rules = {
             ]
         }
     ]
-};if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+};
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
     module.exports = jstz;
 } else if ((typeof define !== 'undefined' && define !== null) && (define.amd != null)) {
     define([], function() {
         return jstz;
     });
 } else {
-    root.jstz = jstz;
+    if (typeof root === 'undefined') {
+        window.jstz = jstz;
+    } else {
+        root.jstz = jstz;
+    }
 }
-}())
+}());
