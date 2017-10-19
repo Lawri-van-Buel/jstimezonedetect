@@ -113,7 +113,7 @@ var jstz = (function () {
 
             timezone = format.resolvedOptions().timeZone;
 
-            if (timezone && (timezone.indexOf("/") > -1 || timezone === 'UTC')) {
+            if (timezone && (timezone.indexOf("/") > -1 || timezone === 'UTC') && timezone.indexOf("Etc") != 0) {
                 return timezone;
             }
 
